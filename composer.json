@@ -13,7 +13,6 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.0",
-        "telegram-bot/api": "*",
         "yajra/laravel-datatables-oracle": "^12.4"
     },
     "require-dev": {
