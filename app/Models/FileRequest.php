@@ -15,7 +15,7 @@ class FileRequest extends Model
     const STATUS_BERJAYA = 'Berjaya';
     const STATUS_DIBATALKAN = 'Dibatalkan';
 
-    protected $table = 'fileRequest';
+    protected $table = 'filerequest';
     protected $primaryKey = 'requestID';
     public $incrementing = true;
 

@@ -9,7 +9,7 @@ class FileReturn extends Model
 {
     use HasFactory;
 
-    protected $table = 'fileReturn';
+    protected $table = 'filereturn';
     protected $primaryKey = 'returnID';
     public $incrementing = true;
     public $timestamps = true;

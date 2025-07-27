@@ -120,7 +120,7 @@ class ManageReturnController extends Controller
         ]);
 
         $currentUser = auth()->user();
-        $query = FileReturn::where('id', $id);
+        $query = FileReturn::where('returnID', $id);
         
         // Apply role-based filtering
         if ($currentUser && $currentUser->role === 'Pka') {

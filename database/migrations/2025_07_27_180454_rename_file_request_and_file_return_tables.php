@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('fileRequest', function (Blueprint $table) {
-            //
-        });
+        // Rename fileRequest table to filerequest
+        Schema::rename('fileRequest', 'filerequest');
+        
+        // Rename fileReturn table to filereturn
+        Schema::rename('fileReturn', 'filereturn');
     }
 
     /**
@@ -21,8 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('fileRequest', function (Blueprint $table) {
-            //
-        });
+        // Reverse the renaming
+        Schema::rename('filerequest', 'fileRequest');
+        Schema::rename('filereturn', 'fileReturn');
     }
 };
