@@ -60,6 +60,14 @@ class User extends Model implements Authenticatable, CanResetPassword
     }
 
     /**
+     * Get the route key for the model (for route model binding)
+     */
+    public function getRouteKeyName()
+    {
+        return 'userID';
+    }
+
+    /**
      * Get the full role name for display
      */
     public function getRoleDisplayNameAttribute()

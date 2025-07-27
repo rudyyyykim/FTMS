@@ -147,7 +147,7 @@ Route::prefix('admin')
                    ->name('users.store');
              Route::put('users/{user}/update', [ManageUserController::class, 'update'])
                    ->name('users.update');
-             Route::delete('users/{user}/delete', [ManageUserController::class, 'destroy'])
+             Route::delete('users/{user}', [ManageUserController::class, 'destroy'])
                    ->name('users.destroy');
          });
      });

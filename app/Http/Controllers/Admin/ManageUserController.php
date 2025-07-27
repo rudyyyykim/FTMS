@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\FileReturn;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class ManageUserController extends Controller
 {
@@ -133,16 +135,32 @@ class ManageUserController extends Controller
         }
 
         // Prevent deleting yourself
-        if ($user->userID == auth()->id()) {
+        if ($user->userID == auth()->user()->userID) {
             return response()->json([
                 'error' => 'Anda tidak boleh memadam akaun sendiri.'
             ], 403);
         }
 
-        $user->delete();
+        try {
+            // Check if user has any associated file returns
+            $fileReturnsCount = FileReturn::where('userID', $user->userID)->count();
+            
+            if ($fileReturnsCount > 0) {
+                return response()->json([
+                    'error' => 'Tidak boleh memadam pengguna ini kerana masih mempunyai ' . $fileReturnsCount . ' rekod pemulangan fail yang berkaitan. Sila pastikan tiada rekod yang berkaitan sebelum memadam pengguna.'
+                ], 409);
+            }
 
-        return response()->json([
-            'message' => 'Pengguna berjaya dipadam.'
-        ]);
+            $user->delete();
+
+            return response()->json([
+                'message' => 'Pengguna berjaya dipadam.'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error deleting user: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'Ralat berlaku ketika memadam pengguna: ' . $e->getMessage()
+            ], 500);
+        }
     }
 }

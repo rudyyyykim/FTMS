@@ -273,14 +273,23 @@ $routePrefix = function($route) {
 </div>
 <!-- /.container-fluid -->
 
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-  <div class="container my-auto">
-    <div class="copyright text-center my-auto">
-      <span>Hak Cipta &copy; {{ config('app.name') }} {{ date('Y') }}</span>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Hak Cipta &copy; {{ config('app.name') }} {{ date('Y') }}</span>
+            </div>
+          </div>
+        </footer>
+
     </div>
-  </div>
-</footer>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
 
 <!-- Add User Modal -->
 <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
@@ -621,6 +630,8 @@ $(document).ready(function() {
         var deleteUrl = "{{ route('admin.users.destroy', ['user' => ':id']) }}";
         deleteUrl = deleteUrl.replace(':id', userId);
         
+        console.log("User ID:", userId);
+        console.log("User Name:", userName);
         console.log("Delete URL:", deleteUrl);
         
         $('#deleteUserForm').attr('action', deleteUrl);
@@ -655,7 +666,17 @@ $(document).ready(function() {
             },
             error: function(xhr) {
                 console.log("Error:", xhr.responseText);
-                $('#errorMessage').html('Ralat berlaku ketika memadam pengguna.');
+                $('#deleteUserModal').modal('hide');
+                
+                var errorMessage = 'Ralat berlaku ketika memadam pengguna.';
+                
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    errorMessage = xhr.responseJSON.error;
+                } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+                
+                $('#errorMessage').html(errorMessage);
                 $('#errorModal').modal('show');
             }
         });
