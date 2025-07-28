@@ -15,7 +15,7 @@ class ManageFilesController extends Controller
     public function index()
     {
         $functions = Functions::all(); // Get all functions for filter dropdown
-        return view('admin.manageFiles', compact('functions'));
+        return view('Admin.manageFiles', compact('functions'));
     }
 
     public function getFilesData(Request $request)

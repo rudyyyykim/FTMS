@@ -20,7 +20,7 @@ class EditFilesController extends Controller
             ->where('functionCode', $file->functionCode)
             ->get();
 
-        return view('admin.ffeditFile', compact('file', 'functions', 'activities', 'subActivities'));
+        return view('Admin.ffeditFile', compact('file', 'functions', 'activities', 'subActivities'));
     }
 
     public function update(Request $request, $id)

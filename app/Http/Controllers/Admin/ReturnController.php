@@ -9,6 +9,6 @@ class ReturnController extends Controller
 {
     public function index()
     {
-        return view('admin.manageReturn');
+        return view('Admin.manageReturn');
     }
 }

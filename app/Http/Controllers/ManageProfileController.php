@@ -20,7 +20,7 @@ class ManageProfileController extends Controller
             return redirect()->route('login')->with('error', 'Please login to access this page');
         }
         
-        return view('admin.manageProfile', compact('user'));
+        return view('Admin.manageProfile', compact('user'));
     }
     
     public function update(Request $request)

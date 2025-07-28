@@ -17,6 +17,6 @@ class FunctionController extends Controller
                 'slug' => $function->functionCode
             ];
         });
-        return view('admin.selectFunction', compact('functions'));
+        return view('Admin.selectFunction', compact('functions'));
     }
 }

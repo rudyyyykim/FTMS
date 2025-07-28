@@ -20,7 +20,7 @@ class ManageUserController extends Controller
         }
         
         $users = User::all();
-        return view('admin.manageUser', compact('users'));
+        return view('Admin.manageUser', compact('users'));
     }
 
     public function store(Request $request)

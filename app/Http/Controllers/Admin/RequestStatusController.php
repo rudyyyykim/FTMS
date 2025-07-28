@@ -15,7 +15,7 @@ class RequestStatusController extends Controller
 {
     public function index()
     {
-        return view('admin.requestStatus');
+        return view('Admin.requestStatus');
     }
 
     public function data(Request $request)

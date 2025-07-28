@@ -44,7 +44,7 @@ class DashboardController extends Controller
         $overdueFiles = $allOverdueFiles->where('status', 'overdue')->values();
         $dueTodayFiles = $allOverdueFiles->where('status', 'due_today')->values();
 
-        return view('admin.adminDashboard', compact('totalFiles', 'borrowedFiles', 'totalUsers', 'weeklyData', 'overdueFiles', 'dueTodayFiles', 'overdueCount', 'allOverdueFiles'));
+        return view('Admin.adminDashboard', compact('totalFiles', 'borrowedFiles', 'totalUsers', 'weeklyData', 'overdueFiles', 'dueTodayFiles', 'overdueCount', 'allOverdueFiles'));
     }
     
     private function getOverdueFiles()

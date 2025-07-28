@@ -17,7 +17,7 @@ class ManageRequestController extends Controller
 {
     public function index()
     {
-        return view('admin.manageRequest');
+        return view('Admin.manageRequest');
     }
 
     public function getRequestsData(Request $request)
@@ -88,7 +88,7 @@ class ManageRequestController extends Controller
     public function requestFileForm($fileID)
     {
         $file = File::findOrFail($fileID);
-        return view('admin.requestFileForm', compact('file'));
+        return view('Admin.requestFileForm', compact('file'));
     }
 
     public function searchStaff(Request $request)
@@ -258,7 +258,7 @@ class ManageRequestController extends Controller
             ->with(['staff', 'fileReturn'])
             ->first();
 
-        return view('admin.reserveFileForm', compact('file', 'currentBorrower'));
+        return view('Admin.reserveFileForm', compact('file', 'currentBorrower'));
     }
 
     public function submitFileReservation(Request $request, $fileID)

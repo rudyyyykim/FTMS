@@ -18,7 +18,7 @@ class AddFilesController extends Controller
     {
         try {
             $functions = Functions::all();
-            return view('admin.ffaddFile', compact('functions'));
+            return view('Admin.ffaddFile', compact('functions'));
         } catch (\Exception $e) {
             \Log::error('Error in AddFilesController@create: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Terdapat ralat semasa memuatkan halaman tambah fail.');

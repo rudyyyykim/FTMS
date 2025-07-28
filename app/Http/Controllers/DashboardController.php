@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function adminIndex()
     {
-        return view('admin.dashboard'); // Create this view
+        return view('Admin.dashboard'); // Create this view
     }
 
     public function supervisorIndex()
