@@ -113,6 +113,13 @@ class RequestHistoryController extends Controller
                     Carbon::parse($return->updatedReturnDate)->format('d/m/Y') : 
                     ($return->returnDate ? $return->returnDate->format('d/m/Y') : '-');
             })
+            ->addColumn('file_code_formatted', function($return) {
+                $file = $return->fileRequest->file;
+                if (!$file) return '-';
+                
+                return $file->functionCode . ' - ' . $file->activityCode . '/' . 
+                       $file->subActivityCode . '/' . $file->fileCode . ' - ' . $file->fileName;
+            })
             ->addColumn('file_info', function($return) {
                 $file = $return->fileRequest->file;
                 if (!$file) return '-';
@@ -165,6 +172,17 @@ class RequestHistoryController extends Controller
                 }
             })
             ->filterColumn('file_code', function($query, $keyword) {
+                $query->whereHas('fileRequest.file', function($q) use ($keyword) {
+                    $q->where(function($subQ) use ($keyword) {
+                        $subQ->where('functionCode', 'like', '%' . $keyword . '%')
+                             ->orWhere('activityCode', 'like', '%' . $keyword . '%')
+                             ->orWhere('subActivityCode', 'like', '%' . $keyword . '%')
+                             ->orWhere('fileCode', 'like', '%' . $keyword . '%')
+                             ->orWhere('fileName', 'like', '%' . $keyword . '%');
+                    });
+                });
+            })
+            ->filterColumn('file_code_formatted', function($query, $keyword) {
                 $query->whereHas('fileRequest.file', function($q) use ($keyword) {
                     $q->where(function($subQ) use ($keyword) {
                         $subQ->where('functionCode', 'like', '%' . $keyword . '%')

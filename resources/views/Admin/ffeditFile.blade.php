@@ -384,18 +384,26 @@ $routePrefix = function($route) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <!-- /.container-fluid -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Hak Cipta &copy; {{ config('app.name') }} {{ date('Y') }}</span>
       </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Hak Cipta &copy; {{ config('app.name') }} {{ date('Y') }}</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
     </div>
-  </footer>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
 
   <!-- Core JavaScript-->
   <script src="{{ asset('js/vendor/jquery/jquery.min.js') }}"></script>

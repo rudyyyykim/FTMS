@@ -173,8 +173,8 @@ $generateWhatsAppLink = function($file) {
              data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Operasi Fail:</h6>
-            <a class="collapse-item" href="{{ route($routePrefix('manageFiles')) }}">Senarai Fail</a>
-            <a class="collapse-item" href="{{ route($routePrefix('ffaddFile')) }}">Tambah Fail</a>
+            <a class="collapse-item" href="{{ route('admin.manageFiles') }}">Senarai Fail</a>
+            <a class="collapse-item" href="{{ route('admin.ffaddFile') }}">Tambah Fail</a>
           </div>
         </div>
       </li>
@@ -224,7 +224,7 @@ $generateWhatsAppLink = function($file) {
       <!--Manage User - Only visible to Admin -->
       @if(Auth::user()->role == 'Admin')
       <li class="nav-item">
-        <a class="nav-link" href="{{ route($routePrefix('manageUser')) }}">
+        <a class="nav-link" href="{{ route('admin.manageUser') }}">
           <i class="fas fa-users-cog"></i>
           <span>Urus pengguna</span>
         </a>

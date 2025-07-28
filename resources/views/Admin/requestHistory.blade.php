@@ -325,10 +325,9 @@ $routePrefix = function($route) {
                       <thead class="thead-light">
                         <tr>
                           <th style="min-width: 50px;">Bil.</th>
-                          <th style="min-width: 100px;">ID Permohonan</th>
                           <th style="min-width: 120px;">Tarikh Mohon</th>
-                          <th style="min-width: 100px;">ID Pemulangan</th>
                           <th style="min-width: 120px;">Tarikh Pulang</th>
+                          <th style="min-width: 200px;">Kod Fail</th>
                           <th style="min-width: 120px;">Maklumat Fail</th>
                           <th style="min-width: 120px;">Maklumat Staff</th>
                           <th style="min-width: 100px;">Masa Pulang</th>
@@ -561,14 +560,28 @@ $routePrefix = function($route) {
                     d.timing = $('#filterTiming').val();
                     d.date_from = $('#filterDateFrom').val();
                     d.date_to = $('#filterDateTo').val();
+                },
+                dataSrc: function(json) {
+                    console.log('DataTables response:', json); // Debug log
+                    return json.data;
                 }
             },
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                { data: 'request_id', name: 'request_id', searchable: true },
                 { data: 'request_date', name: 'request_date', searchable: false },
-                { data: 'return_id', name: 'return_id', searchable: true },
                 { data: 'actual_return_date', name: 'actual_return_date', searchable: false },
+                { 
+                    data: 'file_code_formatted', 
+                    name: 'file_code_formatted',
+                    searchable: true,
+                    render: function(data, type, row) {
+                        console.log('File code formatted data:', data); // Debug log
+                        if (data && data !== '-') {
+                            return '<span style="font-size: 14px; word-wrap: break-word;">' + data + '</span>';
+                        }
+                        return '<span class="text-muted">-</span>';
+                    }
+                },
                 { 
                     data: 'file_info', 
                     name: 'file_code',
@@ -639,7 +652,7 @@ $routePrefix = function($route) {
                     text: '<i class="fas fa-print"></i> Cetak',
                     className: 'btn btn-info btn-sm',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 7, 8] // Standard table columns only
+                        columns: [0, 1, 2, 3, 6, 7] // Updated column indices after removing ID columns
                     },
                     title: 'Sejarah Permohonan - ' + new Date().toLocaleDateString('ms-MY')
                 }

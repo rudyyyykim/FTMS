@@ -491,7 +491,7 @@ $routePrefix = function($route) {
                                                     
                                                     <div class="alert alert-info mt-3">
                                                         <i class="fas fa-info-circle me-2"></i>
-                                                        <strong>Nota:</strong> Sila ambil fail di lokasi berikut: {{ $file->fileLocation }}dan hubungi staff untuk mengambil fail.
+                                                        <strong>Nota:</strong> Sila ambil fail di lokasi berikut: {{ $file->fileLocation }} dan hubungi staff untuk mengambil fail.
                                                     </div>
                                                 @endif
                                             </div>
