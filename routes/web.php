@@ -52,6 +52,22 @@ Route::get('/home', function () {
     return redirect()->route('login');
 })->middleware('auth');
 
+// Dashboard route - handles Fortify redirect after login
+Route::get('/dashboard', function () {
+    if (auth()->check()) {
+        $user = auth()->user();
+        switch ($user->role) {
+            case 'Admin':
+                return redirect()->route('admin.dashboard');
+            case 'Pka':
+                return redirect()->route('pka.dashboard');
+            default:
+                return redirect()->route('admin.dashboard');
+        }
+    }
+    return redirect()->route('login');
+})->middleware('auth');
+
 // Admin routes
 Route::prefix('admin')
      ->name('admin.')
